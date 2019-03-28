@@ -104,12 +104,12 @@ def train_main(project_path,
                run_name='run1',
                restore_from='latest',
                save_every=1000):
-    checkpointDirectory = os.path.join(project_path,CHECKPOINT_DIR)
-    modelDirectory = os.path.join(project_path,MODEL_DIR)
-    samplesDirectory = os.path.join(project_path,SAMPLE_DIR)
-    enc = encoder.get_encoder(model_name)
+    checkpoint_directory = os.path.join(project_path, CHECKPOINT_DIR, model_name, dataset)
+    model_directory = os.path.join(project_path, MODEL_DIR, model_name)
+    samples_directory = os.path.join(project_path, SAMPLE_DIR, model_name, dataset)
+    enc = encoder.get_encoder(model_directory)
     hparams = model.default_hparams()
-    with open(os.path.join(modelDirectory, model_name, 'hparams.json')) as f:
+    with open(os.path.join(model_directory, model_name, 'hparams.json')) as f:
         hparams.override_from_dict(json.load(f))
 
     if sample_length is None:
@@ -147,14 +147,14 @@ def train_main(project_path,
         sess.run(tf.global_variables_initializer())
 
         if restore_from == 'latest':
-            ckpt = tf.train.latest_checkpoint(os.path.join(checkpointDirectory, run_name))
+            ckpt = tf.train.latest_checkpoint(os.path.join(checkpoint_directory, run_name))
             if ckpt is None:
                 # Get fresh GPT weights if new run.
                 ckpt = tf.train.latest_checkpoint(
-                    os.path.join(modelDirectory, model_name))
+                    os.path.join(model_directory, model_name))
         elif restore_from == 'fresh':
             ckpt = tf.train.latest_checkpoint(
-                os.path.join(modelDirectory, model_name))
+                os.path.join(model_directory, model_name))
         else:
             ckpt = tf.train.latest_checkpoint(restore_from)
         print('Loading checkpoint', ckpt)
@@ -167,23 +167,23 @@ def train_main(project_path,
         print('Training...')
 
         counter = 1
-        if os.path.exists(os.path.join(checkpointDirectory, run_name, 'counter')):
+        if os.path.exists(os.path.join(checkpoint_directory, run_name, 'counter')):
             # Load the step number if we're resuming a run
             # Add 1 so we don't immediately try to save again
-            with open(os.path.join(checkpointDirectory, run_name, 'counter'),
+            with open(os.path.join(checkpoint_directory, run_name, 'counter'),
                       'r') as fp:
                 counter = int(fp.read()) + 1
 
         def save():
-            maketree(os.path.join(checkpointDirectory, run_name))
+            maketree(os.path.join(checkpoint_directory, run_name))
             print(
                 'Saving',
-                os.path.join(checkpointDirectory, run_name, 'model-{}').format(counter))
+                os.path.join(checkpoint_directory, run_name, 'model-{}').format(counter))
             saver.save(
                 sess,
-                os.path.join(checkpointDirectory, run_name, 'model'),
+                os.path.join(checkpoint_directory, run_name, 'model'),
                 global_step=counter)
-            with open(os.path.join(checkpointDirectory, run_name, 'counter'),
+            with open(os.path.join(checkpoint_directory, run_name, 'counter'),
                       'w') as fp:
                 fp.write(str(counter) + '\n')
 
@@ -200,9 +200,9 @@ def train_main(project_path,
                     all_text.append(text)
                     index += 1
             print(text)
-            maketree(os.path.join(samplesDirectory, run_name))
+            maketree(os.path.join(samples_directory, run_name))
             with open(
-                    os.path.join(samplesDirectory, run_name,
+                    os.path.join(samples_directory, run_name,
                                  'samples-{}.txt').format(counter), 'w', encoding='utf-8') as fp:
                 fp.write('\n'.join(all_text))
 

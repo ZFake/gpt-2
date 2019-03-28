@@ -20,7 +20,9 @@ When you have model, upload it to `colab/models` subdirectory. Note that each mo
 
 #5 DATASET PREPARATION
 
-Move files you wish the model to train on to `colab/dataset` subdirectory.  
+Move files you wish the model to train on to `colab/dataset` subdirectory.
+
+You can also use alternative datasets – just create another subdirectory within `colab` directory and change `dataset_path` variable in Jupyter notebook accordingly. E.g.: `colab/alternative-dataset` subdirectory corresponds to `dataset_path = 'alternative-dataset'` in Jupyter notebook.  
 
 #6 RUNNING
 Just run Jupyter notebook provided (**Runtime** menu **Run all** item).
