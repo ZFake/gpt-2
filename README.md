@@ -30,6 +30,10 @@ See [DEVELOPERS.md](./DEVELOPERS.md)
 
 See [CONTRIBUTORS.md](./CONTRIBUTORS.md)
 
+## Using with Google Colaboratory
+
+See [GOOGLE_COLABORATORY.md](./GOOGLE_COLABORATORY.md)
+
 ### Fine tuning on custom datasets
 
 To retrain GPT-2 117M model on a custom text dataset:
