@@ -1,16 +1,16 @@
-#1 GOOGLE DRIVE
+# 1 GOOGLE DRIVE
 Put `colab` directory somewhere on Google Drive. Remember full path to it. Keep in mind, that path is prefixed by `gdrive/My Drive`, e.g. if you put it into Google Drive root without changing it's name, it's full path will be `gdrive/My Drive/colab`.
 
-#2 JUPYTER NOTEBOOK
+# 2 JUPYTER NOTEBOOK
 Just copy Jupyter notebook provided to your Google Colaboratory.
 
 Remember to change `project_full_path` variable value to the path from step 1.
 
-#3 COLABORATORY RUNTIME PREPARATION
+# 3 COLABORATORY RUNTIME PREPARATION
 
 Open Jupyter notebook (file with **.ipynb** extension) in Google Colaboratory. From **Runtime** menu select **Change runtime type** menu item. Set **Runtime type** dropdown list value to **Python 3**. Set **Hardware acceleration** dropdown list value to **GPU**. Click **Save** button.
 
-#4 MODEL PREPARATION
+# 4 MODEL PREPARATION
 
 Use `download_mode.py` locally to download GPT-2 model you want.
 
@@ -18,13 +18,13 @@ Alternatively, download 177M model as a .zip archive from https://goo.gl/qBhYx4
 
 When you have model, upload it to `colab/models` subdirectory. Note that each model has to be in a separate subdirectory, e.g. `colab/models/117M`, `colab/models/custom-2` etc.
 
-#5 DATASET PREPARATION
+# 5 DATASET PREPARATION
 
 Move files you wish the model to train on to `colab/dataset` subdirectory.
 
 You can also use alternative datasets – just create another subdirectory within `colab` directory and change `dataset_path` variable in Jupyter notebook accordingly. E.g.: `colab/alternative-dataset` subdirectory corresponds to `dataset_path = 'alternative-dataset'` in Jupyter notebook.  
 
-#6 RUNNING
+# 6 RUNNING
 
 Reconnect to hosted runtime (dropdown button near **RAM** and **Disk** indicator, **Reconnect to hosted runtime**) and restart runtime once again.
 
