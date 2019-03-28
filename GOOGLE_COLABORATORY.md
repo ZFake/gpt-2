@@ -8,7 +8,7 @@ Remember to change `project_full_path` variable value to the path from step 1.
 
 #3 COLABORATORY RUNTIME PREPARATION
 
-Open Jupyter notebook in Google Colaboratory. From **Runtime** menu select **Change runtime type** menu item. Set **Runtime type** dropdown list value to **Python 3**. Set **Hardware acceleration** dropdown list value to **GPU**. Click **Save** button.
+Open Jupyter notebook (file with **.ipynb** extension) in Google Colaboratory. From **Runtime** menu select **Change runtime type** menu item. Set **Runtime type** dropdown list value to **Python 3**. Set **Hardware acceleration** dropdown list value to **GPU**. Click **Save** button.
 
 #4 MODEL PREPARATION
 
