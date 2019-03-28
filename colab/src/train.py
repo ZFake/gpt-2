@@ -109,7 +109,7 @@ def train_main(project_path,
     samples_directory = os.path.join(project_path, SAMPLE_DIR, model_name, dataset)
     enc = encoder.get_encoder(model_directory)
     hparams = model.default_hparams()
-    with open(os.path.join(model_directory, model_name, 'hparams.json')) as f:
+    with open(os.path.join(model_directory, 'hparams.json')) as f:
         hparams.override_from_dict(json.load(f))
 
     if sample_length is None:
@@ -151,17 +151,17 @@ def train_main(project_path,
             if ckpt is None:
                 # Get fresh GPT weights if new run.
                 ckpt = tf.train.latest_checkpoint(
-                    os.path.join(model_directory, model_name))
+                    os.path.join(model_directory))
         elif restore_from == 'fresh':
             ckpt = tf.train.latest_checkpoint(
-                os.path.join(model_directory, model_name))
+                os.path.join(model_directory))
         else:
             ckpt = tf.train.latest_checkpoint(restore_from)
         print('Loading checkpoint', ckpt)
         saver.restore(sess, ckpt)
 
         print('Loading dataset...')
-        chunks = load_dataset(enc, dataset)
+        chunks = load_dataset(enc, os.path.join(project_path,dataset))
         data_sampler = Sampler(chunks)
         print('dataset has', data_sampler.total_size, 'tokens')
         print('Training...')

@@ -25,7 +25,10 @@ Move files you wish the model to train on to `colab/dataset` subdirectory.
 You can also use alternative datasets – just create another subdirectory within `colab` directory and change `dataset_path` variable in Jupyter notebook accordingly. E.g.: `colab/alternative-dataset` subdirectory corresponds to `dataset_path = 'alternative-dataset'` in Jupyter notebook.  
 
 #6 RUNNING
-Just run Jupyter notebook provided (**Runtime** menu **Run all** item).
+
+Reconnect to hosted runtime (dropdown button near **RAM** and **Disk** indicator, **Reconnect to hosted runtime**) and restart runtime once again.
+
+Afterwards just run Jupyter notebook provided (**Runtime** menu **Run all** item).
 
 As you run it, from time to time you will have to authorize Google Colaboratory to use your Google Drive. When encountered with *"Go to this URL in a browser: https://accounts.google.com/o/oauth2/auth?<...>* while executing last code cell, click the authorization link (it starts with https://accounts.google.com/o/oauth2/auth?) and authorize Google Drive usage with account you used in step 1. Afterwards, you will have to copy authorization code provided by Google to a field in Jupyter Notebook output.
 
