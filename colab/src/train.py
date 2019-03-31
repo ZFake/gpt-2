@@ -13,6 +13,8 @@ import glob
 
 import model, sample, encoder
 
+from IPython.display import clear_output
+
 CHECKPOINT_DIR = 'checkpoints'
 SAMPLE_DIR = 'samples'
 MODEL_DIR = 'models'
@@ -214,6 +216,7 @@ def train_main(project_path,
                 if counter % save_every == 0:
                     save()
                 if counter % sample_every == 0:
+                    clear_output()
                     generate_samples()
 
                 batch = [data_sampler.sample(1024) for _ in range(batch_size)]
